@@ -1,6 +1,6 @@
 class GetData {
   String? id;
-  DateTime? timestamp;
+  String? timestamp;
   double? lightIntensity;
   double? voltage;
 
