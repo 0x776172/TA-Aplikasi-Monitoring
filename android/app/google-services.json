@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "977497730986",
+    "firebase_url": "https://buatproyekakhir-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "buatproyekakhir",
+    "storage_bucket": "buatproyekakhir.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977497730986:android:78e4544cb3dcb48542c5d3",
+        "android_client_info": {
+          "package_name": "com.example.monitoring_output"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977497730986-r8smlj1u1h5l79si1ej6iqoed7ikn418.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlMQPp2SISl1Mwr6KVGSWQXKDTzKMDNlc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "977497730986-r8smlj1u1h5l79si1ej6iqoed7ikn418.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
