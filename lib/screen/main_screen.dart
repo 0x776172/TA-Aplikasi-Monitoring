@@ -180,7 +180,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               title: const Text(
                 "Panel 3",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
               onTap: () {
                 Navigator.pop(context);
