@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
             id: snapshot.key ?? "",
             timestamp: date,
             lightIntensity: values['lightIntensity'] ?? 0,
-            voltage: values['voltage'] ?? 0,
+            voltage: values['panel1'] ?? 0,
           );
           data1.add(result);
         }
