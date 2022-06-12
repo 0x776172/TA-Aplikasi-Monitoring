@@ -12,7 +12,27 @@ class HistoryScreen extends StatefulWidget {
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
-  bool isShown = false;
+  Widget getActualData(String title, int index) {
+    switch (title) {
+      case "DATA PANEL 1":
+        {
+          return Text("Tegangan: ${widget.data[index].panel1}");
+        }
+      case "DATA PANEL 2":
+        {
+          return Text("Tegangan: ${widget.data[index].panel1}");
+        }
+      case "DATA PANEL 3":
+        {
+          return Text("Tegangan: ${widget.data[index].panel1}");
+        }
+      default:
+        {
+          return const Text("Data Kosong");
+        }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -67,7 +87,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       children: [
                         Text(
                             "Intensitas Cahaya: ${widget.data[index].lightIntensity} lx"),
-                        Text("Tegangan: ${widget.data[index].voltage} V"),
+                        getActualData(widget.title, index),
                       ],
                     ),
                   ],

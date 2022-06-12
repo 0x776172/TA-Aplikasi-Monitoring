@@ -14,7 +14,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<GetData> data1 = <GetData>[];
+  List<GetData> data = <GetData>[];
   List<GetData> data2 = <GetData>[];
   List<GetData> data3 = <GetData>[];
 
@@ -24,13 +24,13 @@ class _MyHomePageState extends State<MyHomePage> {
     // TODO: implement initState
     super.initState();
     _getData1();
-    _getData2();
+    // _getData2();
     // _getData3();
   }
 
   void _getData1() {
-    _db.child('panel1').onValue.listen((event) {
-      data1.clear();
+    _db.child('data').onValue.listen((event) {
+      data.clear();
       setState(() {
         for (var snapshot in event.snapshot.children) {
           var values = Map<dynamic, dynamic>.from(
@@ -42,35 +42,37 @@ class _MyHomePageState extends State<MyHomePage> {
             id: snapshot.key ?? "",
             timestamp: date,
             lightIntensity: values['lightIntensity'] ?? 0,
-            voltage: values['panel1'] ?? 0,
+            panel1: values['panel1'] ?? 0,
+            panel2: values['panel2'] ?? 1,
+            panel3: values['panel3'] ?? 2,
           );
-          data1.add(result);
+          data.add(result);
         }
-        print(data1);
+        print(data);
       });
     });
   }
 
-  void _getData2() {
-    _db.child('panel2').onValue.listen((event) {
-      setState(() {
-        for (var snapshot in event.snapshot.children) {
-          var values = Map<dynamic, dynamic>.from(
-              jsonDecode(jsonEncode(snapshot.value)));
-          var rawDate =
-              DateTime.fromMillisecondsSinceEpoch(values['Timestamp'] ?? 0);
-          var date = DateFormat("dd/MM/yyyy HH:mm").format(rawDate);
-          var result = GetData(
-            id: snapshot.key ?? "",
-            timestamp: date,
-            lightIntensity: values['lightIntensity'] ?? 0,
-            voltage: values['voltage'] ?? 0,
-          );
-          data2.add(result);
-        }
-      });
-    });
-  }
+  // void _getData2() {
+  //   _db.child('panel2').onValue.listen((event) {
+  //     setState(() {
+  //       for (var snapshot in event.snapshot.children) {
+  //         var values = Map<dynamic, dynamic>.from(
+  //             jsonDecode(jsonEncode(snapshot.value)));
+  //         var rawDate =
+  //             DateTime.fromMillisecondsSinceEpoch(values['Timestamp'] ?? 0);
+  //         var date = DateFormat("dd/MM/yyyy HH:mm").format(rawDate);
+  //         var result = GetData(
+  //           id: snapshot.key ?? "",
+  //           timestamp: date,
+  //           lightIntensity: values['lightIntensity'] ?? 0,
+  //           voltage: values['voltage'] ?? 0,
+  //         );
+  //         data2.add(result);
+  //       }
+  //     });
+  //   });
+  // }
 
   // void _getData3() {
   //   _db.child('panel3').onValue.listen((event) {
@@ -109,13 +111,6 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 children: [
                   Expanded(child: Image.asset("lib/asset/Logo_PENS_putih.png")),
-                  // const Text(
-                  //   'Menu',
-                  //   style: TextStyle(
-                  //       fontSize: 20,
-                  //       color: Colors.white,
-                  //       fontWeight: FontWeight.bold),
-                  // ),
                 ],
               ),
             ),
@@ -144,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => HistoryScreen(
-                        data: data1,
+                        data: data,
                         title: "DATA PANEL 1",
                       ),
                     ));
@@ -166,7 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => HistoryScreen(
-                        data: data2,
+                        data: data,
                         title: "DATA PANEL 2",
                       ),
                     ));
@@ -188,7 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => HistoryScreen(
-                        data: data3,
+                        data: data,
                         title: "DATA PANEL 3",
                       ),
                     ));
@@ -227,24 +222,17 @@ class _MyHomePageState extends State<MyHomePage> {
         )),
         body: ListView(
           children: [
-            Card(
-              elevation: 2,
-              child: Row(children: []),
-            ),
             MyCard(
               title: "Tegangan Panel 1",
-              dataVoltage:
-                  data1.isNotEmpty ? data1[data1.length - 1].voltage : 0,
+              dataVoltage: data.isNotEmpty ? data[data.length - 1].panel1 : 0,
             ),
             MyCard(
               title: "Tegangan Panel 2",
-              dataVoltage:
-                  data2.isNotEmpty ? data2[data2.length - 1].voltage : 0,
+              dataVoltage: data.isNotEmpty ? data[data.length - 1].panel2 : 0,
             ),
             MyCard(
               title: "Tegangan Panel 3",
-              dataVoltage:
-                  data3.isNotEmpty ? data3[data3.length - 1].voltage : 0,
+              dataVoltage: data.isNotEmpty ? data[data.length - 1].panel3 : 0,
             ),
           ],
         ),
