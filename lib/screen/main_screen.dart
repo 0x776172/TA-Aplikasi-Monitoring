@@ -23,12 +23,12 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _getData1();
+    _getData();
     // _getData2();
     // _getData3();
   }
 
-  void _getData1() {
+  void _getData() {
     _db.child('data').onValue.listen((event) {
       data.clear();
       setState(() {
@@ -43,54 +43,14 @@ class _MyHomePageState extends State<MyHomePage> {
             timestamp: date,
             lightIntensity: values['lightIntensity'] ?? 0,
             panel1: values['panel1'] ?? 0,
-            panel2: values['panel2'] ?? 1,
-            panel3: values['panel3'] ?? 2,
+            panel2: values['panel2'] ?? 0,
+            panel3: values['panel3'] ?? 0,
           );
           data.add(result);
         }
-        print(data);
       });
     });
   }
-
-  // void _getData2() {
-  //   _db.child('panel2').onValue.listen((event) {
-  //     setState(() {
-  //       for (var snapshot in event.snapshot.children) {
-  //         var values = Map<dynamic, dynamic>.from(
-  //             jsonDecode(jsonEncode(snapshot.value)));
-  //         var rawDate =
-  //             DateTime.fromMillisecondsSinceEpoch(values['Timestamp'] ?? 0);
-  //         var date = DateFormat("dd/MM/yyyy HH:mm").format(rawDate);
-  //         var result = GetData(
-  //           id: snapshot.key ?? "",
-  //           timestamp: date,
-  //           lightIntensity: values['lightIntensity'] ?? 0,
-  //           voltage: values['voltage'] ?? 0,
-  //         );
-  //         data2.add(result);
-  //       }
-  //     });
-  //   });
-  // }
-
-  // void _getData3() {
-  //   _db.child('panel3').onValue.listen((event) {
-  //     setState(() {
-  //       for (var snapshot in event.snapshot.children) {
-  //         var values =
-  //             Map<String, dynamic>.from(jsonDecode(jsonEncode(snapshot.value)));
-  //         var result = GetData(
-  //           id: snapshot.key!,
-  //           timestamp: DateTime.fromMillisecondsSinceEpoch(values['Timestamp']),
-  //           lightIntensity: values['lightIntensity'],
-  //           voltage: values['voltage'],
-  //         );
-  //         data3.add(result);
-  //       }
-  //     });
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {

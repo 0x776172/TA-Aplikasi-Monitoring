@@ -12,19 +12,19 @@ class HistoryScreen extends StatefulWidget {
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
-  Widget getActualData(String title, int index) {
+  Widget getText(String title, int index) {
     switch (title) {
       case "DATA PANEL 1":
         {
-          return Text("Tegangan: ${widget.data[index].panel1}");
+          return Text("Tegangan: ${widget.data[index].panel1} V");
         }
       case "DATA PANEL 2":
         {
-          return Text("Tegangan: ${widget.data[index].panel1}");
+          return Text("Tegangan: ${widget.data[index].panel2} V");
         }
       case "DATA PANEL 3":
         {
-          return Text("Tegangan: ${widget.data[index].panel1}");
+          return Text("Tegangan: ${widget.data[index].panel3} V");
         }
       default:
         {
@@ -41,20 +41,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
         appBar: AppBar(
           elevation: 0,
           title: Text(widget.title),
-          // actions: [
-          //   PopupMenuButton(itemBuilder: (context) {
-          //     return [
-          //       PopupMenuItem(
-          //         child: Text(isShown ? "Hide Ampere" : "Show Ampere"),
-          //         onTap: () {
-          //           setState(() {
-          //             isShown = !isShown;
-          //           });
-          //         },
-          //       ),
-          //     ];
-          //   })
-          // ],
         ),
         body: ListView.separated(
           itemCount: widget.data.length,
@@ -74,7 +60,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "${widget.data[index].timestamp}",
+                      widget.data[index].timestamp,
                       style: const TextStyle(
                         fontSize: 15,
                         wordSpacing: 5,
@@ -87,7 +73,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       children: [
                         Text(
                             "Intensitas Cahaya: ${widget.data[index].lightIntensity} lx"),
-                        getActualData(widget.title, index),
+                        getText(widget.title, index),
                       ],
                     ),
                   ],
