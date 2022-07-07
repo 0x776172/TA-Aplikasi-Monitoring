@@ -12,6 +12,7 @@ class HistoryScreen extends StatefulWidget {
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
+  // this function return data as per panel that chosen by the list tile
   Widget getText(String title, int index) {
     switch (title) {
       case "DATA PANEL 1":

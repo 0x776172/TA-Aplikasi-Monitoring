@@ -41,10 +41,15 @@ class _MyHomePageState extends State<MyHomePage> {
           var result = GetData(
             id: snapshot.key ?? "",
             timestamp: date,
-            lightIntensity: values['lightIntensity'] ?? 0,
-            panel1: values['panel1'] ?? 0,
-            panel2: values['panel2'] ?? 0,
-            panel3: values['panel3'] ?? 0,
+            lightIntensity: double.parse(values['lightIntensity'] == null
+                ? '0'
+                : values['lightIntensity'].toString()),
+            panel1: double.parse(
+                values['panel1'] == null ? '0' : values['panel1'].toString()),
+            panel2: double.parse(
+                values['panel2'] == null ? '0' : values['panel2'].toString()),
+            panel3: double.parse(
+                values['panel3'] == null ? '0' : values['panel3'].toString()),
           );
           data.add(result);
         }
