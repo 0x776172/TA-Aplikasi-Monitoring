@@ -199,6 +199,17 @@ class _MyHomePageState extends State<MyHomePage> {
               title: "Tegangan Panel 3",
               dataVoltage: data.isNotEmpty ? data[data.length - 1].panel3 : 0,
             ),
+            Card(
+              elevation: 2,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Text(
+                  "Jumlah Intensitas: ${data[data.length - 1].lightIntensity} lx",
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
+            )
           ],
         ),
       ),
